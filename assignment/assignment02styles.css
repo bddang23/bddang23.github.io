@@ -27,6 +27,17 @@ span .c{
   height: 100px;
   word-wrap: normal;
 }
+img[alt="cat icon"]{
+   position: fixed;
+  bottom: 0;
+  right: 0;
+}
+img[alt="dog icon"]{
+   position: relative;
+    bottom: 150px;
+  right: 5px;
+}
+
 /* --- pre-existing css --- */
 .stripey tr:nth-child(even) {
   background-color: gray;
