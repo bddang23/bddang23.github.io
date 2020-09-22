@@ -73,7 +73,7 @@ nav {
 .mousey td:hover {
   background-color: yellow;
 }
-.rightey td {
+.rightey td:nth-child(5) {
   text-align: right;
 }
 input[type="text"].pinkey:focus {
