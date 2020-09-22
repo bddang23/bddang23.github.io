@@ -35,13 +35,14 @@ img[alt="cat icon"]{
 }
 img[alt="dog icon"]{
    position: relative;
-    bottom: 150px;
-  right: 5px;
+   bottom: 150px;
+   right: 5px;
 }
 
-#positionMe {position: relative;}
-
-div .notused {background-color:orange}
+#positionMe {
+  position: relative;
+  background-color:orange
+}
 
 img[alt="bird icon"]{
    position:absolute;
