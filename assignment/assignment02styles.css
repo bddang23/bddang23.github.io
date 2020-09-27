@@ -44,7 +44,7 @@ img[alt="cat icon"] {
 img[alt="dog icon"] {
   position:relative;
   bottom:150px;
-  left:50px;
+  right:50px;
 }
 
 #positionMe {
