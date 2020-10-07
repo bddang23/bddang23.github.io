@@ -1,12 +1,11 @@
 let elem = [];
 // assign the entire table row for hole 1 to a variable, elem
-elem[1]
+  elem[1]
   = document.getElementById("1");
-
 // display the number of children (all td elements)
-// console.log(elem.children.length);
+console.log(elem.children.length);
 // display the content of the + button, which is the first child of the fifth element
-// console.log(elem.children[4].children[0]); 
+console.log(elem.children[4].children[0]); 
 
 // assign a function to the + button
 elem[1].children[4].children[0].onclick 
@@ -24,7 +23,6 @@ function add1 (elem) {
 }
 
 /* your mission: 
-
 1. Make all the + buttons add 1 to the score of the hole. Do not allow the score to exceed double the par. 
 2. Make all the - buttons subtract 1 from the score of the hole. Do not allow the score to be negative!
 3. Make the "Over" column display the difference, score - par, of the hole.
@@ -37,3 +35,5 @@ function add1 (elem) {
 10. Add a "FONT" button which toggles the font size of the entire app, from/to smaller to/from larger.
 *. Advanced (optional): put circles around scores that are birdies, and squares around scores that are bogeys!
 */
+let body = document.getElementsByClassName("body");
+for (let i =0)
