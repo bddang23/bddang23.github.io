@@ -254,6 +254,7 @@ else {
 function clear(elem) {
   elem.children[2].innerHTML="-";
   elem.children[3].innerHTML="-";
+  color(elem);
 }
 
 
