@@ -36,5 +36,3 @@ function add1 (elem) {
 10. Add a "FONT" button which toggles the font size of the entire app, from/to smaller to/from larger.
 *. Advanced (optional): put circles around scores that are birdies, and squares around scores that are bogeys!
 */
-
-
