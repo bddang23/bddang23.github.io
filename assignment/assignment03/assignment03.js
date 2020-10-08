@@ -115,8 +115,8 @@ function add1 (elem) {
 function sub1 (elem) {
   if(elem.children[2].innerHTML == "-") 
     elem.children[2].innerHTML = "0";
-  else if (elem.children[2].innerHTML == "-1"){
-    alert("Score is double Spar. Try to plus or Reset!");
+  else if (elem.children[2].innerHTML == "0"){
+    alert("Score is negative. Try to plus or Reset!");
     elem.children[2].innerHTML = "0";
   }
   else {
