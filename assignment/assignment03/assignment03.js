@@ -1,11 +1,9 @@
 let elem = [];
 // assign the entire table row for hole 1 to a variable, elem
-  elem[1]
-  = document.getElementById("1");
-// display the number of children (all td elements)
-console.log(elem.children.length);
-// display the content of the + button, which is the first child of the fifth element
-console.log(elem.children[4].children[0]); 
+let rows = document.getElementsByTagName("tr");
+for (let i =0;i<rows.length;i++){
+  elem[i]=document.getElementById(i);
+}
 
 // assign a function to the + button
 elem[1].children[4].children[0].onclick 
@@ -15,6 +13,9 @@ elem[1].children[4].children[0].onclick
 function add1 (elem) {
   if(elem.children[2].innerHTML == "-") 
     elem.children[2].innerHTML = "1";
+  else if (parseInt(elem.children[2].innerHTM) / parseInt(elem.children[1].innerHTM) >= 2){
+    alert("Score is over spar!");
+  }
   else {
     let currentScore = elem.children[2].innerHTML;
     currentScore = Number.parseInt(currentScore);
@@ -35,5 +36,5 @@ function add1 (elem) {
 10. Add a "FONT" button which toggles the font size of the entire app, from/to smaller to/from larger.
 *. Advanced (optional): put circles around scores that are birdies, and squares around scores that are bogeys!
 */
-let body = document.getElementsByClassName("body");
-for (let i =0)
+
+
