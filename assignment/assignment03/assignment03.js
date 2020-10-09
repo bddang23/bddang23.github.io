@@ -1,9 +1,11 @@
 let elem = [];
 // assign the entire table row for hole 1 to a variable, elem
 let rows = document.getElementsByTagName("tr");
-for (let i = 0; i < rows.length; i++) {
+
+for (let i = 0; i<rows.length; i++) {
     elem[i] = document.getElementById(i);
 }
+
 
 // assign a function to the + button
 elem[1].children[4].children[0].onclick = function() {
@@ -37,7 +39,7 @@ elem[3].children[4].children[2].onclick = function() {
 };
 
 elem[4].children[4].children[0].onclick = function() {
-    add1(elem[4]);
+  add1(elem[4]);
 };
 elem[4].children[4].children[1].onclick = function() {
     sub1(elem[4]);
@@ -187,11 +189,9 @@ elem[18].children[4].children[2].onclick = function() {
 };
 
 // create an "add1" function
-
 function add1 (elem) {
-  if(elem.children[2].innerHTML == "-"){ 
+  if(elem.children[2].innerHTML == "-"){
     elem.children[2].innerHTML = "1";
-    
 }
   else if (elem.children[2].innerHTML == "8"){
     alert("Score is double Spar. Try to substract or Reset!");
@@ -202,7 +202,6 @@ function add1 (elem) {
     currentScore = Number.parseInt(currentScore);
     elem.children[2].innerHTML = currentScore + 1;
     diff(elem);
-    
   }
 }
 
@@ -212,7 +211,6 @@ function sub1 (elem) {
     alert("Score is negative. Try to plus or Reset!");
     elem.children[2].innerHTML == "-"
   }
-   
   else if (elem.children[2].innerHTML == "0"){
     alert("Score is negative. Try to plus or Reset!");
     elem.children[2].innerHTML = "0";
@@ -222,12 +220,10 @@ function sub1 (elem) {
     currentScore = Number.parseInt(currentScore);
     elem.children[2].innerHTML = currentScore - 1;
     diff(elem);
-  
   }
 }
 
 function diff(elem) {
-  
   let currentScore = elem.children[2].innerHTML;
   currentScore = Number.parseInt(currentScore);
   let par = elem.children[1].innerHTML;
@@ -235,10 +231,10 @@ function diff(elem) {
   elem.children[3].innerHTML = currentScore - par;
 }
 
+
+
+
 function clear(elem) {
   elem.children[2].innerHTML="-";
   elem.children[3].innerHTML="-";
 }
-
-
-  
