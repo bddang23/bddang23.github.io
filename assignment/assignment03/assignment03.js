@@ -191,7 +191,7 @@ elem[18].children[4].children[2].onclick = function() {
 function add1 (elem) {
   if(elem.children[2].innerHTML == "-"){ 
     elem.children[2].innerHTML = "1";
-    color(elem);
+    
 }
   else if (elem.children[2].innerHTML == "8"){
     alert("Score is double Spar. Try to substract or Reset!");
@@ -202,7 +202,7 @@ function add1 (elem) {
     currentScore = Number.parseInt(currentScore);
     elem.children[2].innerHTML = currentScore + 1;
     diff(elem);
-    color(elem);
+    
   }
 }
 
@@ -222,7 +222,7 @@ function sub1 (elem) {
     currentScore = Number.parseInt(currentScore);
     elem.children[2].innerHTML = currentScore - 1;
     diff(elem);
-    color(elem);
+  
   }
 }
 
@@ -235,26 +235,9 @@ function diff(elem) {
   elem.children[3].innerHTML = currentScore - par;
 }
 
-function color(elem) {
-  let order = elem.children[0].innerHTML;
-    order = parseInt(order);
-  if(elem.children[2].innerHTML == "-" ||elem.children[2].innerHTML == "0" ) {
-    if (order%2==0)
-    elem.style.backgroundColor = "rgba(0, 0, 0, 0.05)";
-    else
-    elem.style.backgroundColor = "initial";
-
-  }
-  
-else {
-  elem.style.backgroundColor = "yellow";
-}
-}
-
 function clear(elem) {
   elem.children[2].innerHTML="-";
   elem.children[3].innerHTML="-";
-  color(elem);
 }
 
 
