@@ -36,7 +36,7 @@ function add1(elem) {
 function sub1(elem) {
     if (elem.children[2].innerHTML == "-") {
         alert("Score is negative. Try to plus or Reset!");
-        elem.children[2].innerHTML == "-"
+        elem.children[2].innerHTML == "-";
     } else if (elem.children[2].innerHTML == "0") {
         alert("Score is negative. Try to plus or Reset!");
         elem.children[2].innerHTML = "0";
@@ -63,9 +63,9 @@ function addTotal() {
     let parTotal = 0;
     let overTotal = 0;
 
-    for (let i = 0; i < rows.length - 1; i++) {
-        let score = elem[i].children[2].innerHTML;
+    for (let i = 1; i < rows.length - 1; i++) {
         let par = elem[i].children[1].innerHTML;
+        let score = elem[i].children[2].innerHTML;
         let over = elem[i].children[3].innerHTML;
 
         if (isNaN(score)) {
