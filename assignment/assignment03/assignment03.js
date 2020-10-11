@@ -1,8 +1,8 @@
-//declare an array for each row, elem
-let elem = [];
-
 // assign the entire table rows to a variable, rows
 let rows = document.getElementsByTagName("tr");
+
+//declare an array for each row, elem
+let elem = [];
 
 //set a loops to assign each row (from hole 1 to hole 18) to each element in array. 
 //also, for each elem, assign functions for each buttons - add, substracts, and clear.
@@ -64,8 +64,8 @@ function diff(elem) {
 
 // create an "addTotal" function
 function addTotal() {
-    let totalScore = 0;
     let parTotal = 0;
+    let totalScore = 0;
     let overTotal = 0;
 
     for (let i = 1; i < rows.length - 1; i++) {
@@ -74,23 +74,23 @@ function addTotal() {
         let over = elem[i].children[3].innerHTML;
 
         if (isNaN(score)) {
-            totalScore += 0;
             parTotal += 0;
+            totalScore += 0;
             overTotal += 0;
         } else {
-            totalScore += parseInt(score);
             parTotal += parseInt(par);
+            totalScore += parseInt(score);
             overTotal += parseInt(over);
         }
     }
 
     if (totalScore == 0 && parTotal == 0 && overTotal == 0) {
-        rows[19].children[2].innerText = "-";
         rows[19].children[1].innerText = "-";
+        rows[19].children[2].innerText = "-";
         rows[19].children[3].innerText = "-";
     } else {
-        rows[19].children[2].innerText = totalScore;
         rows[19].children[1].innerText = parTotal;
+        rows[19].children[2].innerText = totalScore;
         rows[19].children[3].innerText = overTotal;
     }
 }
