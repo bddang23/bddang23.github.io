@@ -2,7 +2,7 @@ let elem = [];
 // assign the entire table row for hole 1 to a variable, elem
 let rows = document.getElementsByTagName("tr");
 
-for (let i = 0; i<rows.length; i++) {
+for (let i = 0; i<rows.length-1; i++) {
     elem[i] = document.getElementById(i);
 }
 
@@ -54,7 +54,7 @@ elem[5].children[4].children[0].onclick = function() {
 elem[5].children[4].children[1].onclick = function() {
     sub1(elem[5]);
 };
-elem[1].children[4].children[2].onclick = function() {
+elem[5].children[4].children[2].onclick = function() {
   clear(elem[5]);
 };
 
@@ -203,6 +203,7 @@ function add1 (elem) {
     elem.children[2].innerHTML = currentScore + 1;
     diff(elem);
   }
+  addTotal(elem); 
 }
 
 // create an "sub1" function
@@ -221,6 +222,8 @@ function sub1 (elem) {
     elem.children[2].innerHTML = currentScore - 1;
     diff(elem);
   }
+  addTotal(elem);
+  
 }
 
 function diff(elem) {
@@ -231,10 +234,20 @@ function diff(elem) {
   elem.children[3].innerHTML = currentScore - par;
 }
 
-
+function addTotal(elem) {
+for (let i=1; i<rows.length-1;i++){
+  if (isNaN(elem[i].children[2].innerHTML))
+    totalScore =totalScore + 0;
+  else {
+    totalScore =totalScore + parseInt(elem[i].children[2].innerHTML)
+  }
+}
+rows[19].children[2].innerHTML = totalScore;
+}
 
 
 function clear(elem) {
   elem.children[2].innerHTML="-";
   elem.children[3].innerHTML="-";
+  addTotal(elem);
 }
