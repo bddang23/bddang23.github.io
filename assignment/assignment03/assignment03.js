@@ -1,18 +1,22 @@
+//declare an array for each row, elem
 let elem = [];
-// assign the entire table row for hole 1 to a variable, elem
+
+// assign the entire table rows to a variable, rows
 let rows = document.getElementsByTagName("tr");
 
+//set a loops to assign each row (from hole 1 to hole 18) to each element in array. 
+//also, for each elem, assign functions for each buttons - add, substracts, and clear.
 for (let i = 1; i < rows.length - 1; i++) {
     elem[i] = document.getElementById(i);
     elem[i].children[4].children[0].onclick = function() {
-      add1(elem[i]);
-  };
-  elem[i].children[4].children[1].onclick = function() {
-      sub1(elem[i]);
-  };
-  elem[i].children[4].children[2].onclick = function() {
-      clear(elem[i]);
-  }
+        add1(elem[i]);
+    };
+    elem[i].children[4].children[1].onclick = function() {
+        sub1(elem[i]);
+    };
+    elem[i].children[4].children[2].onclick = function() {
+        clear(elem[i]);
+    }
 }
 
 // create an "add1" function
@@ -35,11 +39,11 @@ function add1(elem) {
 // create an "sub1" function
 function sub1(elem) {
     if (elem.children[2].innerHTML == "-") {
-        alert("Score is negative. Try to plus or Reset!");
+        alert("Score is negative. Try to Plus or Reset!");
         elem.children[2].innerHTML == "-";
-    } else if (elem.children[2].innerHTML == "0") {
-        alert("Score is negative. Try to plus or Reset!");
-        elem.children[2].innerHTML = "0";
+    } else if (elem.children[2].innerHTML == "1") {
+        alert("Score is zero. Try to Plus or Reset!");
+        elem.children[2].innerHTML = "1";
     } else {
         let currentScore = elem.children[2].innerHTML;
         currentScore = Number.parseInt(currentScore);
@@ -49,6 +53,7 @@ function sub1(elem) {
     addTotal();
 }
 
+// create an "diff1" function
 function diff(elem) {
     let currentScore = elem.children[2].innerHTML;
     currentScore = Number.parseInt(currentScore);
@@ -57,7 +62,7 @@ function diff(elem) {
     elem.children[3].innerHTML = currentScore - par;
 }
 
-
+// create an "addTotal" function
 function addTotal() {
     let totalScore = 0;
     let parTotal = 0;
