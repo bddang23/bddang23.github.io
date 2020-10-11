@@ -14,9 +14,8 @@ elem[1].children[4].children[0].onclick = function() {
 elem[1].children[4].children[1].onclick = function() {
     sub1(elem[1]);
 };
-elem[1].children[4].children[2].onclick = function() {
-  clear(elem[1]);
-};
+elem[1].children[4].children[2].onclick = function() {clear(elem[1]);}
+
 
 elem[2].children[4].children[0].onclick = function() {
     add1(elem[2]);
@@ -54,9 +53,8 @@ elem[5].children[4].children[0].onclick = function() {
 elem[5].children[4].children[1].onclick = function() {
     sub1(elem[5]);
 };
-elem[5].children[4].children[2].onclick = function() {
-  clear(elem[5]);
-};
+elem[5].children[4].children[2].onclick = function() {clear(elem[5]);}
+
 
 elem[6].children[4].children[0].onclick = function() {
     add1(elem[6]);
