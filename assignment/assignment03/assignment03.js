@@ -190,6 +190,7 @@ elem[18].children[4].children[2].onclick = function() {
 function add1 (elem) {
   if(elem.children[2].innerHTML == "-"){
     elem.children[2].innerHTML = "1";
+    diff(elem);
 }
   else if (elem.children[2].innerHTML == "8"){
     alert("Score is double Spar. Try to substract or Reset!");
@@ -201,7 +202,7 @@ function add1 (elem) {
     elem.children[2].innerHTML = currentScore + 1;
     diff(elem);
   }
-  addTotal(elem); 
+  addTotal(); 
 }
 
 // create an "sub1" function
@@ -220,8 +221,7 @@ function sub1 (elem) {
     elem.children[2].innerHTML = currentScore - 1;
     diff(elem);
   }
-  addTotal(elem);
-  
+  addTotal();
 }
 
 function diff(elem) {
@@ -232,17 +232,40 @@ function diff(elem) {
   elem.children[3].innerHTML = currentScore - par;
 }
 
-function addTotal(elem) {
-for (let i=1; i<rows.length-1;i++){
-  if (isNaN(elem[i].children[2].innerHTML))
-    totalScore =totalScore + 0;
+
+function addTotal() {
+  let totalScore=0;
+  let parTotal=0;
+  let overTotal =0;
+
+for (let i=0;i<rows.length-1;i++){
+  let score = elem[i].children[2].innerHTML;
+  let par = elem[i].children[1].innerHTML;
+  let over = elem[i].children[3].innerHTML;
+
+  if (isNaN(score)){
+    totalScore +=0;
+    parTotal += 0;
+    overTotal += 0;
+}
   else {
-    totalScore =totalScore + parseInt(elem[i].children[2].innerHTML)
+    totalScore += parseInt(score);
+    parTotal += parseInt(par);
+    overTotal += parseInt(over);
   }
 }
-rows[19].children[2].innerHTML = totalScore;
-}
 
+  if (totalScore==0 && parTotal==0 && overTotal==0){
+  rows[19].children[2].innerText = "-";
+  rows[19].children[1].innerText = "-";
+  rows[19].children[3].innerText = "-";
+  }
+  else {
+    rows[19].children[2].innerText = totalScore;
+    rows[19].children[1].innerText = parTotal;
+    rows[19].children[3].innerText = overTotal;
+  }
+}
 
 function clear(elem) {
   elem.children[2].innerHTML="-";
