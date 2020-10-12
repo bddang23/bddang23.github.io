@@ -24,9 +24,6 @@ function add1(elem) {
     if (elem.children[2].innerHTML == "-") {
         elem.children[2].innerHTML = "1";
         diff(elem);
-    } else if (elem.children[2].innerHTML == "8") {
-        alert("Score is double Spar. Try to substract or Reset!");
-        elem.children[2].innerHTML = "8";
     } else {
         let currentScore = elem.children[2].innerHTML;
         currentScore = Number.parseInt(currentScore);
@@ -39,11 +36,7 @@ function add1(elem) {
 // create an "sub1" function
 function sub1(elem) {
     if (elem.children[2].innerHTML == "-") {
-        alert("Score is negative. Try to Plus or Reset!");
         elem.children[2].innerHTML == "-";
-    } else if (elem.children[2].innerHTML == "1") {
-        alert("Score is zero. Try to Plus or Reset!");
-        elem.children[2].innerHTML = "1";
     } else {
         let currentScore = elem.children[2].innerHTML;
         currentScore = Number.parseInt(currentScore);
