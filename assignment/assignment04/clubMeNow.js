@@ -99,7 +99,7 @@ function undoLastShot() {
 
 // navigate to "About" screen
 function displayAbout() {
-	window.location.href = "clubAbout.html";
+	alert("ClubMeNow version 1.0.0");
 }
 
 // navigate to "Penalty Info" screen
