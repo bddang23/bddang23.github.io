@@ -97,7 +97,8 @@ function undoLastShot() {
 		// your code here ! 
 		var str = JSON.stringify(clubs);
 		localStorage.setItem("clubUndo", str);
-		var lastValue = localStorage.getItem("clubUndo", str);
+		let lastValue = localStorage.getItem("clubUndo");
+		console.log(lastValue);
 }
 
 // navigate to "About" screen
