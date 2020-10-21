@@ -12,7 +12,8 @@
 <body>
 <div class='container'>
 	<h1>Add Club</h1>
-	<form action='clubDistanceList.html'>
+	
+	<form action='clubDistanceList.html'> 
 		<div class='form-group'>
 			<label for='clubName'></label>
 			<input name='clubName' id='clubName' type='text' class='form-control cmn_moreHeight' placeholder='Driver' required /><br>
@@ -22,7 +23,7 @@
 	</form>
 	
 	<br>
-	<footer>Copyright &copy;2019 George Corser</footer>
+	<footer>Copyright &copy;2020 Binh Dang</footer>
 </div>
 <!-- Bootstrap JS -->
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
@@ -33,14 +34,19 @@
 	// retrieve the row of the user-chosen club
 	var clubRow = parseInt(localStorage.getItem('club'));
 	// retrieve the "clubs" array
-	var clubs = JSON.parse(localStorage.getItem('clubs'));
+	var clubsAdd = JSON.parse(localStorage.getItem('clubs'));
 	// display the full clubName of the user-chosen club
-	var newClubName ;
+	var newClubName;
 	var newClubDistances;
 	
 	function addClub() {
-                // your code here
-	}
+				// your code here
+			 newClubName = document.getElementById('clubName').value;
+			 let i = clubsAdd.length;
+			 clubsAdd[i]=[199, "Dr",  newClubName,   0, 0, 0, 0, 10.5, 230, 200];
+			 var str = JSON.stringify(clubsAdd);
+			 localStorage.setItem("clubs",str);
+			 }
 </script>
 
 	

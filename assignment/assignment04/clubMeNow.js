@@ -40,7 +40,7 @@ function resetAllClubDistances() {
 		[1199, "Aw",  "Approach", 0, 0, 0, 0, 46.0, 100,  80],
 		[1299, "Gw",  "Gap",      0, 0, 0, 0, 51.0,  90,  70],
 		[1399, "Sw",  "Sand",     0, 0, 0, 0, 56.0,  80,  60],
-		//[1499, "Lw",  "Lob",      0, 0, 0, 0, 60.0,  60,  40],
+		[1499, "Lw",  "Lob",      0, 0, 0, 0, 60.0,  60,  40],
 		//[1599, "Ptr", "Putter",   0, 0, 0, 0, 60.0,   3,   3],
 	];
 	// store the array in local storage
@@ -80,7 +80,7 @@ function appendTableRows() {
 		cell2.innerHTML = Math.round(clubs[i][4]); // minDist
 		cell3.innerHTML = Math.round(clubs[i][5]); // maxDist
 		cell4.innerHTML = Math.round(clubs[i][6]); // numOfShots
-		cell5.innerHTML = "<button class='btn btn-success cmn_noPadding cmn_fullHeight' onclick='displayclubDistanceEntryForm(" + i + ");'>&nbsp;&nbsp;+&nbsp;&nbsp;</button>";
+		cell5.innerHTML = "<button class='btn btn-success cmn_noPadding cmn_fullHeight' onclick='displayclubDistanceEntryForm(" + i + ");'>&nbsp;&nbsp; + &nbsp;&nbsp;</button>";
 		cell6.innerHTML = clubs[i][2]; // clubName
 		// cell6.innerHTML = clubs[i][2] + ", " + clubs[i][7] + "&deg;"; 
 	}
@@ -93,14 +93,11 @@ function displayclubDistanceEntryForm(c) {
 }
 
 // replace the current "clubs" array with the previous one
-
 function undoLastShot() {
 		// your code here ! 
-		loadClubDistances();
-		let oldClubs = JSON.stringify(clubs);
-		localStorage.setItem("clubUndo", str);
-		let lastValue = localStorage.getItem("clubUndo");
-		console.log(lastValue);
+	 var oldClubs= localStorage.getItem("clubsUndo");
+	localStorage.setItem("clubs",oldClubs)
+	 window.location.href = "clubDistanceList.html"; 
 }
 
 // navigate to "About" screen
@@ -161,8 +158,8 @@ function updateStats(shotDistance=0) {
 		shotDistance = parseInt(document.getElementById('clubVal').value);
 	if(parseInt(shotDistance) > 0) {
 		// save current clubs array for "Undo" functionality
-		var str = JSON.stringify(clubs);
-		localStorage.setItem("clubsUndo", str);
+		var oldClubs = JSON.stringify(clubs);
+		localStorage.setItem("clubsUndo", oldClubs);
 		// update average
 		currentAverage = clubs[clubRow][3];
 		currentNumShots = clubs[clubRow][6];
@@ -192,5 +189,7 @@ function cancelClub() {
 
 // navigate to club distance list screen
 function displayClubEntry() {
+	if (clubs.length>=14)
+		alert("Warning: you are only allowed to carry 14 clubs in your golf bag in match play competition.");
 	window.location.href = "clubEntry.html"; 
 }
