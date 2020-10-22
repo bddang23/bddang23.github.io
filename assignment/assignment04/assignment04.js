@@ -37,7 +37,41 @@ let person = {
   // create a 5-row by 5-column table showing the numbers, 1 through 25
   // put borders around the cells, too, not just around the edge of the table
   // Display output in <div id="2B">
-  
+  let div2b = document.getElementById("2B");
+let table2b = createTable("table2b");
+div2b.appendChild(table2b);
+table2b.setAttribute("style", "border:1px solid black;");
+table2b.setAttribute("width", "100%");
+let num = 1;
+for (let i=1;i<=5;i++){
+    appendTableRow5(table2b,num.toString(),(num+1).toString(),(num+2).toString(),(num+3).toString(),(num+4).toString());
+    num+=5;
+}
+
+function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
+  // create column (table division) DOM objects
+  let td1 = document.createElement("td");
+  let td2 = document.createElement("td");
+  let td3 = document.createElement("td");
+  let td4 = document.createElement("td");
+  let td5 = document.createElement("td");
+  // insert content into columns
+  td1.innerHTML = col1;
+  td2.innerHTML = col2;
+  td3.innerHTML = col3;
+  td4.innerHTML = col4;
+  td5.innerHTML = col5;
+  // create table row DOM object
+  let tr = document.createElement("tr");
+  // append table divisions (columns) to table row
+  tr.appendChild(td1);
+  tr.appendChild(td2);
+  tr.appendChild(td3);
+  tr.appendChild(td4);
+  tr.appendChild(td5);
+  // append the row to the tbody element in the table
+  tableobj.children[0].appendChild(tr);
+}
   // ==================
   
   // 8. create "totals" row and column in a table
@@ -47,8 +81,92 @@ let person = {
   // Use table03A to create table3B. Create new functions as in item 2, above. 
   // in table3B, add a column, "Price * Qty", and use JS to compute the correct values to put in the column
   // add to table03B a "totals" row which gives the "grand total" of all numbers in the "Price * Qty" column
+  let div3b = document.getElementById("3B");
+  let table3b = createTable("table3b");
+  div3b.appendChild(table3b);
+  table3b.setAttribute("border", "1");
+  table3b.setAttribute("class", "table table-striped");
+  table3b.setAttribute("width", "100%");
+  appendTableHeader(table3b,"Items","Price","Quantity","Totals");
+  appendTable(table3b,"Thingamabob","1.00","1");
+  appendTable(table3b,"Whachamacallit","2.00","2");
+  appendTable(table3b,"Doohickey","3.0","3");
+  appendTable(table3b,"Grand Total",Price(),Quantity());
   
-  
+ 
+  function Price(){
+    let tbl = document.getElementById("table3b");
+    let totalP =0;
+    for(let i=1;i<tbl.children[0].childElementCount;i++){
+      let p = tbl.children[0].children[i].children[1].innerHTML;
+           p = parseFloat(p);
+           totalP += p;  
+    }
+    return totalP.toString(); 
+  }
+  function Quantity(){
+    let tbl = document.getElementById("table3b");
+    let totalQ =0;
+    for(let i=1;i<tbl.children[0].childElementCount;i++){
+      let q = tbl.children[0].children[i].children[2].innerHTML;
+           q = parseFloat(q);
+           totalQ += q;  
+    }
+    return totalQ.toString(); 
+  }
+
+  function appendTable (tableobj, col1, col2, col3) {
+    // create column (table division) DOM objects
+    let td1 = document.createElement("td");
+    let td2 = document.createElement("td");
+    let td3 = document.createElement("td");
+    let td4 = document.createElement("td");
+    // insert content into columns
+    td1.innerHTML = col1;
+    td2.innerHTML = col2;
+    td3.innerHTML = col3;
+    td4.innerHTML = Total(col2,col3);
+    
+    function Total(col2,col3,i){
+      let p = col2;
+      p = parseFloat(p);
+      let q = col3;
+      q = parseFloat(q);
+      let total=p*q;
+      return total.toString(); 
+    }
+    // create table row DOM object
+    let tr = document.createElement("tr");
+    // append table divisions (columns) to table row
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    // append the row to the tbody element in the table
+    tableobj.children[0].appendChild(tr);
+  }
+  function appendTableHeader (tableobj, col1, col2, col3, col4) {
+    // create column (table division) DOM objects
+    let th1 = document.createElement("th");
+    let th2 = document.createElement("th");
+    let th3 = document.createElement("th");
+    let th4 = document.createElement("th");
+
+    // insert content into columns
+    th1.innerHTML = col1;
+    th2.innerHTML = col2;
+    th3.innerHTML = col3;
+    th4.innerHTML = col4;
+    // create table row DOM object
+    let tr = document.createElement("tr");
+    // append table divisions (columns) to table row
+    tr.appendChild(th1);
+    tr.appendChild(th2);
+    tr.appendChild(th3);
+    tr.appendChild(th4);
+    // append the row to the tbody element in the table
+    tableobj.children[0].appendChild(tr);
+  }
   // 9. Refactor a non-object-oriented form
   // code below is from: https://www.guru99.com/practical-code-examples-using-javascript.html -->
   
