@@ -84,19 +84,22 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
   let div3b = document.getElementById("3B");
   let table3b = createTable("table3b");
   div3b.appendChild(table3b);
+  let table3A = document.getElementById("3A");
   table3b.setAttribute("border", "1");
   table3b.setAttribute("class", "table table-striped");
   table3b.setAttribute("width", "100%");
-  appendTableHeader(table3b,"Items","Price","Quantity","Totals");
-  appendTable(table3b,"Thingamabob","1.00","1");
-  appendTable(table3b,"Whachamacallit","2.00","2");
-  appendTable(table3b,"Doohickey","3.0","3");
+
+  appendTableHeader(table3b,table3A.children[0].children[0].children[0].children[0].innerHTML,table3A.children[0].children[0].children[0].children[1].innerHTML,table3A.children[0].children[0].children[0].children[2].innerHTML,"Totals");
+
+  for (let i=1; i<table3A.children[0].children[0].children.length;i++){
+    appendTable(table3b,table3A.children[0].children[0].children[i].children[0].innerHTML,table3A.children[0].children[0].children[i].children[1].innerHTML,table3A.children[0].children[0].children[i].children[2].innerHTML);
+  }
   appendTable(table3b,"Grand Total",Price(),Quantity());
   
  
   function Price(){
     let tbl = document.getElementById("table3b");
-    let totalP =0;
+    let totalP =0.00;
     for(let i=1;i<tbl.children[0].childElementCount;i++){
       let p = tbl.children[0].children[i].children[1].innerHTML;
            p = parseFloat(p);
@@ -171,7 +174,7 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
   // code below is from: https://www.guru99.com/practical-code-examples-using-javascript.html -->
   
       // initialize error div id array
-      var divs = new Array();
+      let divs = new Array();
       divs[0] = "errFirst";
       divs[1] = "errLast";
       divs[2] = "errEmail";
@@ -179,7 +182,7 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
       divs[4] = "errPassword";
       divs[5] = "errConfirm";
   
-      // function: validate() ---------------------------------------------
+      // function: validate() validate if the user's input is right ot not
       function validate() {
           // initialize input array
           var inputs = new Array();
@@ -199,8 +202,8 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
           errors[5] = "<span style='color:red'>Please confirm your password!</span>";
           // update error array with error message
           for (i in inputs) {
-              var errMessage = errors[i];
-              var div = divs[i];
+              let errMessage = errors[i];
+              let div = divs[i];
               if (inputs[i] == "")
                   document.getElementById(div).innerHTML = errMessage;
               else if (i == 2) {
@@ -224,7 +227,7 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
           }
       }
   
-      // function: finalValidate() ------------------------------------
+      // function: finalValidate() when user click the button, program going through all 6 boxes and check if each of them is approriate
       function finalValidate() {
           var count = 0;
           for (i = 0; i < 6; i++) {
@@ -239,12 +242,13 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
   
   
   // 10. Create a more object-oriented form
-  
+  let div5b = document.getElementById("5B");
   // Step 1. Create/append the DOM object 
   let form00 = document.getElementById("form00");
   let table00 = createTable("table00");
   form00.appendChild(table00);
-  
+  div5b.appendChild(form00);
+
   // Step 2. Create an JS object array containing form info 
   let formArray = [
     {label: "First name:", inputType: "text", id: "first", 
@@ -262,8 +266,33 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
   ];
   
   // Step 3. loop through the JS object array to populate the form
-  
-  // your code here
+  for (let i in formArray){
+    // create column (table division) DOM objects
+    let td1 = document.createElement("td");
+    let td2 = document.createElement("td");
+    let td3 = document.createElement("td");
+
+    let input = document.createElement("input");
+    input.setAttribute('type',formArray[i].inputType);
+    input.setAttribute('id',formArray[i].id);
+    input.setAttribute('onkeyup', formArray[i].onkeyup);
+
+   let divErr = document.createElement("div");
+  divErr.setAttribute('id',formArray[i].errorId)
+    // insert content into columns
+    td1.innerHTML = formArray[i].label;
+    td2.appendChild(input);
+    td3.appendChild(divErr);
+    // create table row DOM object
+    let tr = document.createElement("tr");
+    // append table divisions (columns) to table row
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    // append the row to the tbody element in the table
+    table00.children[0].appendChild(tr);
+  }
+
   
   // append to tableobj a 3-column table row 
   function appendTableRow3 (tableobj, col1, col2, col3) {
