@@ -172,66 +172,72 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
   }
   // 9. Refactor a non-object-oriented form
   // code below is from: https://www.guru99.com/practical-code-examples-using-javascript.html -->
-  
-      // initialize error div id array
-      let divs = new Array();
-      divs[0] = "errFirst";
-      divs[1] = "errLast";
-      divs[2] = "errEmail";
-      divs[3] = "errUid";
-      divs[4] = "errPassword";
-      divs[5] = "errConfirm";
-  
+
+        // initialize error div id array
+        let divs = new Array();
+        divs[0] = "errFirst";
+        divs[1] = "errLast";
+        divs[2] = "errEmail";
+        divs[3] = "errUid";
+        divs[4] = "errPassword";
+        divs[5] = "errConfirm";
+// initialize error array
+let errors = new Array();
+errors[0] = "<span style='color:red'>Please enter your first name!</span>";
+errors[1] = "<span style='color:red'>Please enter your last name!</span>";
+errors[2] = "<span style='color:red'>Please enter your email!</span>";
+errors[3] = "<span style='color:red'>Please enter your user id!</span>";
+errors[4] = "<span style='color:red'>Please enter your password!</span>";
+errors[5] = "<span style='color:red'>Please confirm your password!</span>";
       // function: validate() validate if the user's input is right ot not
-      function validate() {
-          // initialize input array
-          var inputs = new Array();
-          inputs[0] = document.getElementById('first').value;
-          inputs[1] = document.getElementById('last').value;
-          inputs[2] = document.getElementById('email').value;
-          inputs[3] = document.getElementById('uid').value;
-          inputs[4] = document.getElementById('password').value;
-          inputs[5] = document.getElementById('confirm').value;
-          // initialize error array
-          var errors = new Array();
-          errors[0] = "<span style='color:red'>Please enter your first name!</span>";
-          errors[1] = "<span style='color:red'>Please enter your last name!</span>";
-          errors[2] = "<span style='color:red'>Please enter your email!</span>";
-          errors[3] = "<span style='color:red'>Please enter your user id!</span>";
-          errors[4] = "<span style='color:red'>Please enter your password!</span>";
-          errors[5] = "<span style='color:red'>Please confirm your password!</span>";
-          // update error array with error message
-          for (i in inputs) {
+      function validate(i) {
+
+                // initialize input array
+                let inputs = new Array();
+                inputs[0] = document.getElementById('first').value;
+                inputs[1] = document.getElementById('last').value;
+                inputs[2] = document.getElementById('email').value;
+                inputs[3] = document.getElementById('uid').value;
+                inputs[4] = document.getElementById('password').value;
+                inputs[5] = document.getElementById('confirm').value;
+                
+          // update error array with error message on a specific box
               let errMessage = errors[i];
               let div = divs[i];
-              if (inputs[i] == "")
-                  document.getElementById(div).innerHTML = errMessage;
-              else if (i == 2) {
-                  var atpos = inputs[i].indexOf("@");
-                  var dotpos = inputs[i].lastIndexOf(".");
+              switch (i){
+                case 2:
+                  let atpos = inputs[i].indexOf("@");
+                  let dotpos = inputs[i].lastIndexOf(".");
                   if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= inputs[i].length)
-                      document.getElementById('errEmail').innerHTML 
+                      document.getElementById(div).innerHTML 
                         = "<span style='color: red'>Enter a valid email address!</span>";
                   else
                       document.getElementById(div).innerHTML = "OK!";
-              } else if (i == 5) {
-                  var first = document.getElementById('password').value;
-                  var second = document.getElementById('confirm').value;
+                  break;    
+                case 5:
+                  let first = document.getElementById('password').value;
+                  let second = document.getElementById('confirm').value;
                   if (second != first)
-                      document.getElementById('errConfirm').innerHTML 
+                      document.getElementById(div).innerHTML 
                         = "<span style='color: red'>Your passwords don't match!</span>";
                   else
                       document.getElementById(div).innerHTML = "OK!";
-              } else
+                  break;
+                default:
+                  if (inputs[i] == "")
+                  document.getElementById(div).innerHTML = errMessage;
+                else
                   document.getElementById(div).innerHTML = "OK!";
+              }
           }
-      }
-  
+              
       // function: finalValidate() when user click the button, program going through all 6 boxes and check if each of them is approriate
       function finalValidate() {
           var count = 0;
+          //a loop go through every textbox with validate function
           for (i = 0; i < 6; i++) {
               var div = divs[i];
+              validate(i);
               if (document.getElementById(div).innerHTML == "OK!")
                   count = count + 1;
           }
@@ -251,18 +257,18 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
 
   // Step 2. Create an JS object array containing form info 
   let formArray = [
-    {label: "First name:", inputType: "text", id: "first", 
-      onkeyup: "validate();", errorId: "errFirst"}, 
-    {label: "Last name:",  inputType: "text", id: "last",  
-      onkeyup: "validate();", errorId: "errLast" }, 
-    {label: "Email:",      inputType: "text", id: "email", 
-      onkeyup: "validate();", errorId: "errEmail"}, 
-    {label: "User id:",    inputType: "text", id: "uid",   
-      onkeyup: "validate();", errorId: "errUid"  }, 
-    {label: "Password:",   inputType: "password", id: "password", 
-      onkeyup: "validate();", errorId: "errPassword"}, 
-    {label: "Confirm Password:", inputType: "password", id: "confirm", 
-      onkeyup: "validate();", errorId: "errConfirm"}
+    {label: "First name:", inputType: "text", id: "First", 
+      onkeyup: "ObjectValidate(0);", errorId: "ObjectErrFirst"}, 
+    {label: "Last name:",  inputType: "text", id: "Last",  
+      onkeyup: "ObjectValidate(1);", errorId: "ObjectErrLast" }, 
+    {label: "Email:",      inputType: "text", id: "Email", 
+      onkeyup: "ObjectValidate(2);", errorId: "ObjectErrEmail"}, 
+      {label: "User id:",    inputType: "text", id: "Uid",   
+    onkeyup: "ObjectValidate(3)", errorId: "ObjectErrUid"  }, 
+    {label: "Password:",   inputType: "password", id: "Password", 
+      onkeyup: "ObjectValidate(4);", errorId: "ObjectErrPassword"}, 
+    {label: "Confirm Password:", inputType: "password", id: "Confirm", 
+      onkeyup: "ObjectValidate(5);", errorId: "ObjectErrConfirm"}
   ];
   
   // Step 3. loop through the JS object array to populate the form
@@ -293,6 +299,53 @@ function appendTableRow5 (tableobj, col1, col2, col3, col4 ,col5) {
     table00.children[0].appendChild(tr);
   }
 
+  function ObjectValidate(i) {
+          // initialize error div id array
+          let divsObject = new Array();
+          divsObject[0] = "ObjectErrFirst";
+          divsObject[1] = "ObjectErrLast";
+          divsObject[2] = "ObjectErrEmail";
+          divsObject[3] = "ObjectErrUid";
+          divsObject[4] = "ObjectErrPassword";
+          divsObject[5] = "ObjectErrConfirm";
+    // initialize input array
+    let inputs = new Array();
+    inputs[0] = document.getElementById('First').value;
+    inputs[1] = document.getElementById('Last').value;
+    inputs[2] = document.getElementById('Email').value;
+    inputs[3] = document.getElementById('Uid').value;
+    inputs[4] = document.getElementById('Password').value;
+    inputs[5] = document.getElementById('Confirm').value;
+   
+    // update error array with error message on a specific box
+        let errMessage = errors[i];
+        let div = divsObject[i];
+        switch (i){
+          case 2:
+            let atpos = inputs[i].indexOf("@");
+            let dotpos = inputs[i].lastIndexOf(".");
+            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= inputs[i].length)
+                document.getElementById(div).innerHTML 
+                  = "<span style='color: red'>Enter a valid email address!</span>";
+            else
+                document.getElementById(div).innerHTML = "OK!";
+            break;    
+          case 5:
+            let first = document.getElementById('Password').value;
+            let second = document.getElementById('Confirm').value;
+            if (second != first)
+                document.getElementById(div).innerHTML 
+                  = "<span style='color: red'>Your passwords don't match!</span>";
+            else
+                document.getElementById(div).innerHTML = "OK!";
+            break;
+          default:
+            if (inputs[i] == "")
+            document.getElementById(div).innerHTML = errMessage;
+          else
+            document.getElementById(div).innerHTML = "OK!";
+        }
+    }
   
   // append to tableobj a 3-column table row 
   function appendTableRow3 (tableobj, col1, col2, col3) {
