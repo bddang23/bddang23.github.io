@@ -237,7 +237,9 @@ function validate(i) {
       case 5:
           let first = document.getElementById('password').value;
           let second = document.getElementById('confirm').value;
-          if (second != first)
+          if (inputs[i] == "")
+              document.getElementById(div).innerHTML = errMessage;
+          else if (second != first)
               document.getElementById(div).innerHTML = "<span style='color: red'>Your passwords don't match!</span>";
           else
               document.getElementById(div).innerHTML = "OK!";
@@ -373,7 +375,9 @@ function ObjectValidate(i) {
       case 5:
           let first = document.getElementById('Password').value;
           let second = document.getElementById('Confirm').value;
-          if (second != first)
+          if (inputs[i] == "")
+              document.getElementById(div).innerHTML = errMessage;
+          else if (second != first)
               document.getElementById(div).innerHTML = "<span style='color: red'>Your passwords don't match!</span>";
           else
               document.getElementById(div).innerHTML = "OK!";
