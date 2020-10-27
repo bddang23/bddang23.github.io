@@ -98,19 +98,7 @@ appendTableHeader(table3b, table3A.children[0].children[0].children[0].children[
 for (let i = 1; i < table3A.children[0].children[0].children.length; i++) {
   appendTable(table3b, table3A.children[0].children[0].children[i].children[0].innerHTML, table3A.children[0].children[0].children[i].children[1].innerHTML, table3A.children[0].children[0].children[i].children[2].innerHTML);
 }
-appendTable(table3b, "Grand Total", Price(), Quantity());
-
-
-function Price() {
-  let tbl = document.getElementById("table3b");
-  let totalP = 0.00;
-  for (let i = 1; i < tbl.children[0].childElementCount; i++) {
-      let p = tbl.children[0].children[i].children[1].innerHTML;
-      p = parseFloat(p);
-      totalP += p;
-  }
-  return totalP.toString();
-}
+appendTable(table3b, "Grand Total","", Quantity());
 
 function Quantity() {
   let tbl = document.getElementById("table3b");
@@ -136,7 +124,7 @@ function appendTable(tableobj, col1, col2, col3) {
   if (col1 != "Grand Total")
       td4.innerHTML = Total(col2, col3);
   else {
-
+    td2.setAttribute("boder-left","0px");
       td4.innerHTML = totalPrice();
   }
 
