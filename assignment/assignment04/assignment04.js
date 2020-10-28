@@ -124,7 +124,7 @@ function appendTable(tableobj, col1, col2, col3) {
   if (col1 != "Grand Total")
       td4.innerHTML = Total(col2, col3);
   else {
-    td2.setAttribute("boder-left","0px");
+    td2.setAttribute("border-left","0px");
       td4.innerHTML = totalPrice();
   }
 
@@ -134,7 +134,7 @@ function appendTable(tableobj, col1, col2, col3) {
       let q = col3;
       q = parseFloat(q);
       let total = p * q;
-      return total.toString();
+      return "$ " + total.toString();
   }
 
   function totalPrice() {
@@ -144,7 +144,7 @@ function appendTable(tableobj, col1, col2, col3) {
               p = parseFloat(p);
               totalPrice += p;
           }
-          return totalPrice.toString();
+          return "$ " + totalPrice.toString();
       }
       // create table row DOM object
   let tr = document.createElement("tr");
