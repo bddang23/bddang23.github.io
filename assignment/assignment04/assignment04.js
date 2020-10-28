@@ -8,12 +8,12 @@ let person = {
   state: "Michigan",
   zipCode: 48360,
   fullAddress: function() {
-          return this.streetAddress + ", " + this.city + ", " + this.state + ", " + this.zipCode
+          return this.streetAddress + ", " + this.city + ", " + this.state + ", " + this.zipCode;
       },
-      fullName: function() {
-          return this.firstName + " " + this.lastName
+  fullName: function() {
+          return this.firstName + " " + this.lastName;
       }
-}
+};
 document.getElementById("1A").innerHTML = person.fullName();
 document.getElementById("1B").innerHTML = person.fullAddress();
 
@@ -30,8 +30,8 @@ document.getElementById("1B").innerHTML = person.fullAddress();
 let div2a = document.getElementById("2A");
 let table2a = createTable("table2a");
 div2a.appendChild(table2a);
-table2a.setAttribute("style", "border:1px solid black;")
-table2a.setAttribute("width", "100%")
+table2a.setAttribute("style", "border:1px solid black;");
+table2a.setAttribute("width", "100%");
 appendTableRow3(table2a, "1", "2", "3");
 appendTableRow3(table2a, "4", "5", "6");
 appendTableRow3(table2a, "7", "8", "9");
