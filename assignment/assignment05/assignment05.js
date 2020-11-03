@@ -112,11 +112,11 @@ function loadContent() {
 
 function buildChart() {
    //initialize empty array
-   totalDeathOver30000 = [];
+   totalDeathOver50000 = [];
   
    for (let c of covidJsObj.Countries) {
-     if (c.TotalDeaths > 30000) {
-      totalDeathOver30000.push({ 
+     if (c.TotalDeaths > 50000) {
+      totalDeathOver50000.push({ 
          "Slug": c.Slug, 
          "NewConfirmed": c.NewConfirmed, 
          "NewDeaths": c.NewDeaths,
@@ -128,7 +128,7 @@ function buildChart() {
      }
    }
 
-   totalDeathOver30000 = _.orderBy(totalDeathOver30000, ['totalDeathOver30000', 'TotalConfirmedPer100000'], ['asc', 'desc']);
+   totalDeathOver50000 = _.orderBy(totalDeathOver50000, ['totalDeathOver50000', 'TotalConfirmedPer100000'], ['asc', 'desc']);
 
    chartData.data.datasets[0].backgroundColor 
      = "rgba(100,100,100,0.4)"; // gray
@@ -147,16 +147,16 @@ function buildChart() {
    
 
    chartData.data.labels  
-     = totalDeathOver30000.map( (x) => x.Slug );
+     = totalDeathOver50000.map( (x) => x.Slug );
 
-   chartData.data.datasets[0].data = totalDeathOver30000.map( (x) => x.TotalConfirmed );
+   chartData.data.datasets[0].data = totalDeathOver50000.map( (x) => x.TotalConfirmed );
 
    chartData.data.datasets[1].data  
-     = totalDeathOver30000.map( 
+     = totalDeathOver50000.map( 
        (x) => x.TotalDeath );
 
     chartData.data.datasets[2].data  
-      =totalDeathOver30000.map( 
+      =totalDeathOver50000.map( 
       (x) => x.TotalConfirmedPer100000 );
   
    chartData.options.title.text 
