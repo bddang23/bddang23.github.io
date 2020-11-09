@@ -128,7 +128,7 @@ function buildChart() {
      }
    }
 
-   totalDeathOver50000 = _.orderBy(totalDeathOver50000, ['totalDeathOver50000', 'TotalConfirmedPer100000'], ['asc', 'desc']);
+   totalDeathOver50000 = _.orderBy(totalDeathOver50000, 'TotalConfirmedPer100000', 'desc');
 
    chartData.data.datasets[0].backgroundColor 
      = "rgba(100,100,100,0.4)"; // gray
