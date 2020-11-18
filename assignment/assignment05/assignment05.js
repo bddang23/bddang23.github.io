@@ -83,7 +83,7 @@ function loadContent() {
 
   let different = now.diff(date);
 
-  if (!localStorage.getItem("json")|| different> 24*60*60*1000){
+  if (!localStorage.getItem("date")||!localStorage.getItem("json")|| different> 24*60*60*1000){
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
