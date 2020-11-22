@@ -59,7 +59,7 @@ var loans = [
       $(this).css("background-color", "white");
 
       //regular expression, that input need to start with number and end with number, and repeat more than 1 number.
-      //no letter accpeted
+      //no letter accpeted. Change to red when invalid
       let regex = /^[0-9]+\.?[0-9]*$/;
       let str =  $(this).val();
       if(regex.test(str)==false){
@@ -75,7 +75,9 @@ var loans = [
     });
 
     $("#loan_int01").blur( function() {
-      let regex = /^[0]+\.?[0-9]*$/;
+      //regular expression, that input need to start with 0 and end with number, and repeat more than 1 number.
+      //no letter accpeted. Change to red when invalid
+      let regex = /^[0]+\.*[0-9]*$/;
       let str =  $(this).val();
       if(regex.test(str)==false){
         $(this).val("Invalid!");
@@ -87,9 +89,10 @@ var loans = [
       }); 
   //} // end: function loadDoc()
   });
-  
+
+  //function processForm when click the button
   function processForm(){
-        //update loan amount
+        //update loan info in the array
         for(let i=0; i<5; i++) {
           loans[i].loan_amount = parseInt($("#loan_amt0" + (i+1)).val());
         }
@@ -104,6 +107,7 @@ var loans = [
         let firstYearLoanAmount = loans[0].loan_amount;
         $("#loan_amt0" + 1).val(firstYearLoanAmount.toFixed(2));
 
+        // fill in the first year loan info and interest accured
         let firstYearLoanInt = loans[0].loan_int_rate;
         $("#loan_int0" + 1).val(firstYearLoanInt);
         let loanWithInterest = loans[0].loan_amount * (1 + firstYearLoanInt);
@@ -111,9 +115,11 @@ var loans = [
         interest_accured = loans[0].loan_amount *firstYearLoanInt;
 
 
-        // fill other loan years
+        // fill other loan years and add up interest accured 
         for(let i=2; i<6; i++) {
           $("#loan_year0" + i).val(firstYear++);
+
+          //disable all interest and year text boxes
           $("#loan_year0" + i).attr('disabled','disabled');
           $("#loan_year0" + i).css("background-color", "gray");
           $("#loan_year0" + i).css("color", "white");
@@ -136,9 +142,10 @@ var loans = [
   function toComma(value){
       return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");}
    
+      //function updateLoansArray, check either year or interest only
+      //then fill in all the approriate value
   function updateLoansArray(check) {
-
-    if (check=="year"){
+     if (check=="year"){
       loans[0].loan_year = parseInt($("#loan_year01").val());
       for(var i=1; i<5; i++) {
         loans[i].loan_year = loans[0].loan_year + i;
@@ -153,13 +160,19 @@ var loans = [
      }
     }
   
+    // then set loans info to local storage 
     localStorage.setItem("json", JSON.stringify(loans))
   }
 
   //Angular Table
+  //initialize a module
     let app = angular.module("paymentTable",[]);
+    
+    //create a controller
     app.controller("myController", function($scope){
+      //when button click update the table
       $scope.updateTable = function(){
+        //initialize record array
         $scope.record=[];
         //prepare a minimum loan payment to pay in 10 years
         let debt = ($("#loan_bal05").html()).replace(",", "");
@@ -184,23 +197,29 @@ var loans = [
           $scope.record.push(obj);
         }
 
+        //make payment plan point to record array
         let paymentPlan = $scope.record;
         let rate = loans[0].loan_int_rate;
         minPay = parseFloat(minPay.replace(",", ""));
         let yeBal=0
         let intAmt=0;
         
+        //a for loops to run and update the array record
       for(let i=0; i<10;i++){
+        //update the yeBal and intAmt with total debt at first
           if (i==0){
             intAmt= (debt-minPay)*(rate);
             yeBal = (debt-minPay)*(1+rate);
           }
+          //at the end, only update payment and ignore int and bal
           else if (i==9){
             paymentPlan[i].pmt = toComma(yeBal.toFixed(2));
             paymentPlan[i].int = "-";
             paymentPlan[i].bal = "-";
             break;
           } 
+          //if the yeBal - payment less than 0, then only update payment and ignore int and bal
+          //also, filter out all balance that are above 0 or "-""
           else if ((yeBal-minPay)*(1+rate)<0){
             paymentPlan[i].pmt = toComma(yeBal.toFixed(2));
             paymentPlan[i].int = "-";
@@ -209,11 +228,13 @@ var loans = [
             console.log($scope.record);
             break;
           }
+          //else, update int 
           else{
             intAmt= (yeBal-minPay)*(rate);
             yeBal = (yeBal-minPay)*(1+rate);
           }
-
+          
+          //after done interest amount and year end Balance, update it to the recorda array
           paymentPlan[i].int = toComma(intAmt.toFixed(2));
           paymentPlan[i].bal = toComma(yeBal.toFixed(2));
       }
