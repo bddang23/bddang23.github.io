@@ -24,7 +24,7 @@ var loans = [
       loans = JSON.parse(jsonLoans);
     }
     // pre-fill defaults for first loan year
-    let firstYear = loans[0].loan_year;
+    var firstYear = loans[0].loan_year;
     $("#loan_year0" + 1).val(firstYear++);
     let firstYearLoanAmount = loans[0].loan_amount;
     $("#loan_amt0" + 1).val(firstYearLoanAmount.toFixed(2));
