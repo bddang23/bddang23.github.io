@@ -220,7 +220,7 @@ var loans = [
           } 
           //if the yeBal - payment less than 0, then only update payment and ignore int and bal
           //also, filter out all balance that are above 0 or "-""
-          else if ((yeBal-minPay)*(1+rate)<0){
+          else if (((yeBal-minPay)*(1+rate))<0){
             paymentPlan[i].pmt = toComma(yeBal.toFixed(2));
             paymentPlan[i].int = "-";
             paymentPlan[i].bal = "-";
