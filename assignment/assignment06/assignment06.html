@@ -12,9 +12,12 @@
         #loan_table {background-color: pink;}
     </style>
 
+    <!--- Angular 1.6.9 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
   <link rel="icon" href="/assignment/images/BD.png" type="image/png" />
 </head>
-<body onload="loadDoc();">
+<body>
     <div class="container">
 
         <form>
@@ -23,7 +26,7 @@
             
             <br />
 
-            <div class="row">      
+            <div class="row"  ng-app="paymentTable" ng-controller="myController">      
                 <div class="col-lg-6">
                     <div class="form-group">
                     
@@ -72,27 +75,27 @@
                             </tr>
                         </table>
                         <br />
-                        <button type="button" class="btn btn-primary" onclick="processForm();">Re-calculate</button> 
+                        <button type="button" class="btn btn-primary" onclick="processForm();" ng-click ="updateTable();">Re-calculate</button> 
                     </div>
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="form-group">
-                    
+                    <div class="form-group" >
+                        
                         <h2>Payments</h2>
                         
-                        <table class="table">
+                        <table class="table" >
                             <tr>
                                 <th>Year</th>
                                 <th>Payments</th>
                                 <th>Int Amt</th>
                                 <th>YE Bal</th>
                             </tr>
-                            <tr>
-                                <td><span id="pmt_year01">2025</span></td>
-                                <td><span id="pmt_amt01">$6,500.00</span></td>
-                                <td><span id="pmt_int01">$2,297.60</span></td>
-                                <td><span id="pmt_bal01">$53,017.22</span></td>
+                            <tr ng-repeat="x in record track by $index">
+                                <td>{{x.year}}</td>
+                                <td>{{x.pmt}}</td>
+                                <td>{{x.int}}</td>
+                                <td>{{x.bal}}</td>
                             </tr>
                             
                         </table>
@@ -113,12 +116,16 @@
     </div>
 
 <!--- jquery 3.4.1 -->
-    <script
+<script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
 
-    <script src="assignment06.js"></script>
+    <!-- Lodash: https://lodash.com/ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+
+
+<script src="assignment06.js"></script>
 
 </body>
 </html>
