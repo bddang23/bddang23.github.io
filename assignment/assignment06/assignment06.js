@@ -15,12 +15,12 @@ var loans = [
     //jquery change document.getElementById with $
     //Also add "#loan_year0" + 1\
 
-    //if there are json in local storage then add it, else get the json then parse it into loans
-    if (!localStorage.getItem("json")){
-      localStorage.setItem("json", JSON.stringify(loans));
+    //if there are Ljson in local storage then add it, else get the Ljson then parse it into loans
+    if (!localStorage.getItem("Ljson")){
+      localStorage.setItem("Ljson", JSON.stringify(loans));
     }
     else {
-      let jsonLoans = localStorage.getItem("json");
+      let jsonLoans = localStorage.getItem("Ljson");
       loans = JSON.parse(jsonLoans);
     }
     // pre-fill defaults for first loan year
@@ -161,7 +161,7 @@ var loans = [
     }
   
     // then set loans info to local storage 
-    localStorage.setItem("json", JSON.stringify(loans))
+    localStorage.setItem("Ljson", JSON.stringify(loans))
   }
 
   //Angular Table
