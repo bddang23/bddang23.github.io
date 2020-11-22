@@ -24,7 +24,7 @@ var loans = [
       loans = JSON.parse(jsonLoans);
     }
     // pre-fill defaults for first loan year
-    var firstYear = loans[0].loan_year;
+    let firstYear = loans[0].loan_year;
     $("#loan_year0" + 1).val(firstYear++);
     let firstYearLoanAmount = loans[0].loan_amount;
     $("#loan_amt0" + 1).val(firstYearLoanAmount.toFixed(2));
@@ -220,12 +220,11 @@ var loans = [
           } 
           //if the yeBal - payment less than 0, then only update payment and ignore int and bal
           //also, filter out all balance that are above 0 or "-""
-          else if (((yeBal-minPay)*(1+rate))<0){
+          else if ((yeBal-minPay)*(1+rate)<0){
             paymentPlan[i].pmt = toComma(yeBal.toFixed(2));
             paymentPlan[i].int = "-";
             paymentPlan[i].bal = "-";
-            $scope.record=$scope.record.filter(x=>x.bal>0 ||x.bal=="-");
-            console.log($scope.record);
+            $scope.record=$scope.record.filter(x=> parseFloat(x.bal)>0 ||x.bal=="-");
             break;
           }
           //else, update int 
